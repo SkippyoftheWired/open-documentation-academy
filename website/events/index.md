@@ -6,7 +6,7 @@ All events related to the Documentation Academy can be found in the [Documentati
 
 ## Community Hour
 
-**We host a [Community Hour](https://discourse.ubuntu.com/t/community-hour/42771) every week on a Friday, 16:00 UTC.**
+**We host a [Community Hour](https://discourse.ubuntu.com/t/community-hour/42771) every two weeks on a Friday, 16:00 UTC.**
 
 Our _Community Hour_ sessions are an informal forum for discussions related to documentation.
 
