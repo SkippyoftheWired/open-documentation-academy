@@ -3,49 +3,25 @@
 If your repository uses Sphinx to create nicely rendered documentation, you will need to set up Sphinx on your machine.
 This requires a small chain of steps that are needed to install other things, so you'll need to run through these steps in this order. 
 
-## Install Python
+## Install System Requirements
 
-If you recently updated your machine (with the command `sudo apt update && sudo apt upgrade`), Python3 may already be installed, but we can check that by running the following command:
+Sphinx is a Python based documentation framework. To setup an environment, Sphinx needs:
 
-```bash
-python3 --version
-```
+* Python 3
+* `pip`, a Python package manager
+* `venv`, a Python package that manages [Python virtual enviornments](https://docs.python.org/3/library/venv.html).
 
-If Python3 isn't there, you can run the following command to install it:
+Most projects utilize `make` as a way to automate and abstract operations. Further steps in this guide assume `make` is installed.
 
-```bash
-sudo apt install python3
-```
-
-## Install pip
-
-Pip often comes installed with Python, but not always. Check if it's installed by running:
+On Ubuntu, ensure all dependencies are installed:
 
 ```bash
-pip --version
+sudo apt update
+sudo apt install python3 python3-pip python3-venv make
 ```
 
-If it's not installed already, run:
+It's also a good idea to ensure you system is up to date before proceding with `sudo apt upgrade`
 
-```bash
-sudo apt install python3-pip
-```
-
-### Install Sphinx
-
-Now you have `pip` installed, you can use it to install Sphinx (and that's the end of our chain!) with the following:
-
-```bash
-pip install sphinx
-```
-
-You will probably also need to install the Python virtual environment since it's unlikely to be installed by default. To do this, run:
-
-```bash
-sudo apt install python3.10-venv
-```
-
-This command will install all of the packages that are needed to run a virtual Python environment, but may not have come already bundled with Python3.
 
 ## Make a local build of your documentation
 
@@ -55,32 +31,22 @@ As you're working on your documentation, you'll want to check that your edits ar
 
 If you've been following along on the previous pages, you should be within a folder (possibly called `src`) that contains a sub-folder called `open-documentation-academy`. Let's check where we are first.
 
-Type `ls` on the command line to "list show" all the files and folders you have inside your current folder. If this is a fresh Ubuntu virtual machine, you probably won't have anything yet, except for the `open-documentation-academy` folder that we created when we cloned the repository. Since we have that folder, you can do:
+Type `ls` on the command line to "list show" all the files and folders you have inside your current folder. If this is a fresh Ubuntu virtual machine, you may not have anything yet, except for the `open-documentation-academy` folder that we created when we cloned the repository.
+
+To move into the `open-documentation-academy` directory use `cd` ("change directory").
 
 ```bash
 cd open-documentation-academy 
 ```
 
-This will put you into the ODA folder that contains all of the working contents of the GitHub repository. 
+This will put you into the open-documentation-academy` folder that contains the current contents of the git repository from GitHub. 
 
-If you're not sure where you are, you can run:
+If you're not sure where you are, you can run `ls` again and navigate. Below is an example if you wanted to contribute to the documentation on this website:
 
-```bash
-cd
-ls
-cd <directory name>
-```
-
-Running `cd` by itself will take you back to the root directory, and then you can use `ls` and `cd` to navigate to where you want to be (inside the `open-documentation-academy` folder).
-
-If you've been following along, that will be:
-
-```bash
-cd
-ls
-cd src
-ls
-cd open-documentation-academy
+```console
+user@machine:~/open-documentation-academy$ ls
+adsys  charmcraft  charmed-ceph  landscape  LICENSE  multipass  README.md  snapcraft  ubuntu-desktop  website  wsl
+user@machine:~/open-documentation-academy$ cd website
 ```
 
 ## Build the documentation
@@ -88,15 +54,15 @@ cd open-documentation-academy
 At this point, you can build the documentation (as it currently exists) on your local machine, with:
 
 ```bash
-make run
+make run  # builds documentation and runs local webserver hosting the built html pages
 ```
 
 If `make run` doesn't work initially, then try running this sequence of commands to start with a clean build environment:
 
 ```bash
-make clean
-make install
-make run
+make clean  # deletes previously built files and Python virtual environment
+make install  # creates Python virtual environment and installs dependencies 
+make run  # builds documentation and runs local webserver hosting the built html pages
 ```
 
 If it manages to complete the run successfully, you will see a big rush of commands and output flying past on your terminal window, and eventually, it will stop here:
@@ -110,4 +76,35 @@ It's really convenient to have this running while you're working on your changes
 You can close the running server at any time by pressing `Ctrl` + `C` in the window where it's running.
 
 It's a good idea to open a second Ubuntu tab in your Terminal Window so that you can work in one tab while the documentation can be served in the other. You can do this by clicking on the down arrow next to the currently open tab, and clicking "Ubuntu" (if you're using WSL). 
+
+### On Make commands
+
+Each project may implement different `make` commands. To see available commands run
+
+```bash
+make help
+```
+
+`clean` is safe to run as it does not delete any changes you've made to the source code. It only deletes the rendered documentation, making for a "clean" run of `make run`. You can use the `make` commands for more checks depending on the project, such as `make linkcheck` to ensure links are correct and `make spellcheck` for spelling. An example from the `website` makefile
+
+```console
+user@machine:~/open-documentation-academy/website$ make help
+
+ ------------------------------------------------------------- 
+ * watch, build and serve the documentation:  make run 
+ * only build:                                make html 
+ * only serve:                                make serve 
+ * clean built doc files:                     make clean-doc 
+ * clean full environment:                    make clean 
+ * check links:                               make linkcheck 
+ * check spelling:                            make spelling 
+ * check spelling (without building again):   make spellcheck 
+ * check inclusive language:                  make woke 
+ * check accessibility:                       make pa11y 
+ * check style guide compliance:              make vale 
+ * check style guide compliance on target:    make vale TARGET=* 
+ * check metrics for documentation:           make allmetrics 
+ * other possible targets:                    make <TAB twice> 
+ ------------------------------------------------------------- 
+```
 
