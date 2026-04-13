@@ -11,7 +11,7 @@ Sphinx is a Python based documentation framework. To setup an environment, Sphin
 * `pip`, a Python package manager
 * `venv`, a Python package that manages [Python virtual enviornments](https://docs.python.org/3/library/venv.html).
 
-Most projects utilize `make` as a way to automate and abstract operations. Further steps in this guide assume `make` is installed.
+Most projects utilise `make` as a way to automate and abstract operations. Further steps in this guide assume `make` is installed.
 
 On Ubuntu, ensure all dependencies are installed:
 
@@ -20,7 +20,7 @@ sudo apt update
 sudo apt install python3 python3-pip python3-venv make
 ```
 
-It's also a good idea to ensure you system is up to date before proceding with `sudo apt upgrade`
+It's also a good idea to ensure you system is up to date before proceeding with `sudo apt upgrade`
 
 
 ## Make a local build of your documentation
