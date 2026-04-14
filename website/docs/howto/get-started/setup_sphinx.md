@@ -51,13 +51,13 @@ user@machine:~/open-documentation-academy$ cd website
 
 At this point, you can build the documentation (as it currently exists) on your local machine, with the command `make run`.
 
-`make run` will execute multiple steps, starting with running `install`, and then budiling
+`make run` will execute multiple steps, starting with running `install`, and then building.
 
 If `make run` doesn't work initially, then try running this sequence of commands to start with a clean environment:
 
 `make clean` : deletes previously locally built documentation files and Python virtual environments. It's safe to run as it does not delete any of the source changes you may have made.
 `make install` : creates a Python virtual environment and install all dependencies. This is the recommended way of dealing installing the Python dependencies.
-`make run` : build the documentation and run a local webserver hosting the built html pages.
+`make run` : build the documentation and run a local web server hosting the built HTML pages.
 
 If it manages to complete the run successfully, you will see a big rush of commands and output flying past on your terminal window, and eventually, it will stop here:
 
@@ -79,7 +79,7 @@ Each project may implement different `make` commands. To see available commands 
 make help
 ```
 
-`clean` is safe to run as it does not delete any changes you've made to the source code. It only deletes the rendered documentation,  so that outdated files are not shown on the next build and a new Python virtual environment with updated dependencies can be created. You can use the `make` commands for more checks depending on the project, such as `make linkcheck` to ensure links are correct and `make spellcheck` for spelling. An example from the `website` makefile
+`clean` is safe to run as it does not delete any changes you've made to the source code. It only deletes the rendered documentation,  so that outdated files are not shown on the next build and a new Python virtual environment with updated dependencies can be created. You can use the `make` commands for more checks depending on the project, such as `make linkcheck` to ensure links are correct and `make spellcheck` for checking spelling on built documentation. An example from the `website` makefile
 
 ```console
 user@machine:~/open-documentation-academy/website$ make help
